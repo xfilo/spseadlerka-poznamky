@@ -1,0 +1,29 @@
+# Trendy v bankovníctve
+
+## People out
+
+Náhrada ludí na pobočkách za bankomaty a mobilné appky.
+
+## Preferovanie mobile banking
+
+Jednoduchšia obsluha zo strany banky.
+
+## Digitálne peňaženky v mobile
+
+Pomocou služby Google Pay a Apple Pay.
+
+## NFC
+
+Vďaka NFC rastie počet platieb
+
+## Podpora hlasovej biometrie
+
+Niektoré funkcie elektronického bankovníctva je možné ovládať hlasom.
+
+## Alternatívne spôsoby platenia
+
+Mobil, hodiny, ...
+
+## Náraz biometrickej autentifikácie
+
+Auth na základe odtlačku prsta, scanu tváre, dúhovky, ...

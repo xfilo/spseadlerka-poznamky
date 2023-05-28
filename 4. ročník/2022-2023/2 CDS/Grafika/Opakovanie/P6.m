@@ -1,0 +1,33 @@
+b=[0:1/100:2*pi]
+r1=3*exp (b)
+r2=50*exp (b)
+r3= 100*exp (b)
+r4= 3000*exp (b) 
+
+subplot(2,2,1)
+plot(b,r1)
+xlabel('b')
+ylabel('r1')
+legend('r1= 3*exp (b) ')
+title ('r = a e^b')
+
+subplot(2,2,2)
+plot(b,r2)
+xlabel('b')
+ylabel('r2')
+legend('r2= 50*exp (b) ')
+title ('r = a e^b')
+
+subplot(2,2,3)
+plot(b,r3)
+xlabel('b')
+ylabel('r3')
+legend('r3= 100*exp (b) ')
+title ('r = a e^b')
+
+subplot(2,2,4)
+plot(b,r4)
+xlabel('b')
+ylabel('r4')
+legend('r4= 3000*exp (b) ')
+title ('r = a e^b')

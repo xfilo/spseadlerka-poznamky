@@ -1,0 +1,96 @@
+1. Metody alokacie IP adries
+
+	Dynamicka alokacia
+		DHCP server prideli klientovi IP adresu z dopredu definovaneho rozsahu IP adries na dopredu stanoveny cas prenajmu.
+	Automaticka alokacia
+		DHCP server prideli klientovi IP adresu natrvalo z daneho rozsahu bez stanoveneho casu prenajmu. ​
+	Manualna alokacia
+		DHCP server prideli trvale specificku IP adresu specifickemu pocitacu  na zaklade MAC adresy. 
+--------
+2. Popisat volby DHCP servera
+	
+	4 druhy volieb: 
+
+	Server options - globalne volby servera
+		platia pre vsetky rozsahy IP adries DHCP servera a vsetky triedy definovane na kazdom DHCP serveri a vsetkymi klientmi, ktore DHCP server obsluhuje​ 
+
+	Scope options - volba rozsahu IP adries
+		plati pre vsetkych klientov v definovanom  rozsahu IP adries ​
+
+	Class options - volby triedy DHCP servera 
+		plati pre vsetkych klientov, ktore patria do urcitej triedy DHCP servera
+		User class - prideluje volby DHCP servera skupinam klientov, ktore maju podobnu konfiguraciu
+		Vendor class - prideluje volby DHCP servera skupinam klientom, ktore maju spolocneho dodavatela
+
+	Reserved client options - rezervovane volby klienta
+		plati pre konkretneho klienta, ktory ma rezervovanu IP adresu na zaklade MAC adresy​
+		toto nastavenie ma najvyssiu prioritu 
+​​--------
+3. Prikaz klienta na uvolnenie IP adresi a poziadanie DHCP o pridelenie novej
+
+	ipconfig /release
+	ipconfig /renew
+--------
+4. Zaloha a obnova DHCP s-s-servera
+
+	Zaloha
+		automaticka
+			synchronna zaloha pravidelne raz za 60 minut ​(interval sa da zmenit v registri) 
+			uklada sa do adresara C:\Windows\System32\dhcp\backup​
+		manualna
+			asynchronna
+			treba ulozit inde nez automaticku lebo ju prepise, umiestnenie zalohy je mozne zmenit len na inu particiu lokalneho disku​, nie je možne umiestnit zalohu na sietovy disk alebo mapovany disk ​
+
+	obnova - dhcp musi byt zapnuty, dhcp databaza sa obnovi zo zalohy
+--------
+5. Ako zabezpecime fungovanie DHCP ak sa primarny server vypne
+
+	Nainstalujeme sekundarny dhcp a rozdelime rozsah IP adries
+
+################################################################################################################################################################
+################################################################################################################################################################
+
+1. DHCP pakety(spravy) + 4-cestny handshake
+
+	pakety:
+		DHCPDISCOVER - klient ktory hlada server	(posiela klient)
+		DHCPOFFER - obsahuje info o serveri	(posiela server)	
+		DHCPREQUEST - obsahuje IP adresu DHCP servera a ziadosť o IP adresu, hostname a dalsie parametre	(posiela klient)
+		DHCPNACK - ak IP adresa nie je dostupna alebo klient nema povolenie mat pridelenu IP adresu	(posiela server)
+		DHCPACK - k server najde IP adresu, ktoru klient pozaduje a IP adresa je volna 	(posiela server)
+		DHCPDECLINE - klient odmietne ponukanu IP Adresu	(posiela klient)
+		DHCPRELEASE - klient prerusi prenajom IP adresy	(posiela klient)
+		DHCPCONFIRM - 	klient ziskava pridavne informacie o parametroch konfiguracie TCP/IP siete od servera	(posiela klient)
+
+	4-cestny handshake (C - client, S - server )
+
+		C -> S  DHCPDISCOVER
+		S -> C  DHCPOFFER
+		C -> S  DHCPREQUEST
+		S -> C  DHCPACK
+--------
+2. APIPA ? a kedy sa objavi
+
+	Automatic Private IP Addressing
+		pocitac nakonfiguruje sam seba s IP adresou 169.254.0.0 a maskou siete 255.255.0.0​
+		Takto nakonfigurovany pocitac overuje, ci tato IP adresa sa uz pouziva alebo nie. Ak ano, tak pocitac vyberie inu IP adresu.​
+	objavi sa ak DHCP klient nieje schopny najst DHCP server
+--------
+3. Autorizacia DHCP servera ? +preco sa robi +podmienka autorizacie
+
+	- Ak nejaky uzivatel nainstaluje DHCP server a nema admin prava na sieti, jeho DHCP server nebude pridelovat IP adresy  (jeho DHCP server  nie je  autorizovany)​
+	- Ak je na jednej sieti viacero DHCP serverov, tak pocitacom su pridelovane rozne IP adresy a vznika kolizia
+	- potrebujeme domenu
+--------
+4. Popisat subory DHCP servera
+	
+	Dhcp.mdb - aktualna DB ktora obsahuje info
+	DhcpServLog - zaznamenava udalosti o DHCP serveri
+	Dhcp.pat - DHCP server moze spravovat viacero rozsahov IP adries pre rozne podsiete​, DHCP server musi vediet pridelit roznym klientom spravnu IP adresu z daneho rozsahu
+	J50.chk - kontrolny subor, pomocou ktoreho sa zabezpecuje skutocny zapis do DB
+	J50tmp - subor, ktory sa pouziva na docasne ukladanie dat ked robime akukolvek udrzbu DB
+	tmp.edb - docasna DB
+​--------
+5. Reconcile ?
+		
+	obnovi dane IP adresa ktore ​nemusia byt konzistentne s udajmi v registroch​
