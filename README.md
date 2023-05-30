@@ -1,9 +1,9 @@
 ## SPŠE Karola Adlera 5, Bratislava
 > Táto práca vznikla spojením staršieho repa [adlerka-poznamky](https://github.com/simonSlamka/adlerka-poznamky) a materiálov z roku 2022/2023.
->
 > Obsah je vytriedený podľa ročníkov, školských rokov a predmetov (aspoň cieľ bol taký).
 
----
+
+
 
 ## Ako pridať nový obsah?
 > Vytrieď obsah ktorý chceš pridať podľa šablony nižšie a vytvor PULL REQUEST s tvojim emailom. Následne ta budem kontaktovať.
@@ -11,7 +11,7 @@
 # Ciže vlastne dodrž štruktúru rozloženia súborov tak, ako to je teraz v repoztári.
 ROČNÍK:
     - ŠKOLSKÝ ROK:
-        - NÁZOV PREDMETU:
+        - SKRATKA PREDMETU:
             - OBSAH
 # Ciže vlastne dodrž štruktúru rozloženia súborov tak, ako to je teraz v repoztári.
 ```
